@@ -6,24 +6,24 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <?php 	include 'includes/head.php'; 
-				include 'includes/scripts.php';
-		?>
+		include 'includes/scripts.php';
+	?>
 
 	<script type="text/javascript">
+	//global variables.  terrible practice, i know, but this code for this whole thing is mostly terrible. appending html, onclick (used for a specific reason that i can explain, i swear!  haha) and no comments..  give me a break, i wrote it in like an hour for fun.
 	var currencyObject;
 	var viewingUSD = true;
 
-
 	function curChange(){
-				if(viewingUSD){
-					$("#curType").html("Tap or Click to change to USD.");
-					viewingUSD = false;
-				}else{
-					$("#curType").html("Tap or Click to change to BTC.");
-					viewingUSD = true;
-				}
-				populateTable();
-			}	
+		if(viewingUSD){
+			$("#curType").html("Tap or Click to change to USD.");
+			viewingUSD = false;
+		}else{
+			$("#curType").html("Tap or Click to change to BTC.");
+			viewingUSD = true;
+		}
+		populateTable();
+	}	
 	function populateTable(){
 
 		console.log("populating table with:");
@@ -40,33 +40,33 @@
 		$("#curList").html(finalHtml);
 	}
 
-		$(document).ready(function(){
-			
-			var jso = <?php echo file_get_contents("http://bitspotprice.com/~chris/values.php?formatData=true");?>;
-			currencyObject = jso;
-			
-			populateTable();
-			
-			setInterval(function(){
-				$.ajax({
-					url: '/~chris/values.php?formatData=true',
-					success: function(res){
-						console.log("success");
-						console.log(res);
-						currencyObject = res;			
-						populateTable();
-					}, failure: function(res){
-						console.log("failure");
-						console.log(res);
-					}
-					
-				});
+	$(document).ready(function(){
+		
+		currencyObject = <?php echo file_get_contents("http://localhost/~chris/values.php?formatData=true");?>;
+		
+		populateTable();
+		
+		setInterval(function(){
+			$.ajax({
+				url: '/~chris/values.php?formatData=true',
+				success: function(res){
+					console.log("success");
+					console.log(res);
+					currencyObject = res;			
+					populateTable();
+				}, failure: function(res){
+					console.log("failure");
+					console.log(res);
+				}
+				
+			});
 
-			}, 30000);
-		});
+		}, 30000);
+	});
 
 	</script>
     </head>
+    
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -84,7 +84,6 @@
 		
 		</table>	
       
-
      
             <?php include 'includes/footer.php'; ?>
         </div> <!-- /container -->
