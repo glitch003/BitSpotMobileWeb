@@ -10,7 +10,7 @@
 	?>
 
 	<script type="text/javascript">
-	//global variables.  terrible practice, i know, but this code for this whole thing is mostly terrible. appending html, onclick (used for a specific reason that i can explain, i swear!  haha) and no comments..  give me a break, i wrote it in like an hour for fun.
+	//global variables.  terrible practice, i know, but the code for this whole thing is mostly terrible. appending html, onclick (used for a specific reason that i can explain, i swear!  haha) and no comments..  give me a break, i wrote it in like an hour for fun.
 	var currencyObject;
 	var viewingUSD = true;
 
